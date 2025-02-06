@@ -4,9 +4,9 @@ import './App.css';
 // import { ITasks } from 'main/types';
 import { ThemeProvider, createTheme, Box } from '@mui/material';
 import { themeOptions } from './theme';
-import Button from 'main/Button';
+import { Button } from 'main/components';
 import { themeOptions as remoteTheme } from 'main/themeOptions';
-import Button2 from './components/Button';
+import { Button2 } from './components';
 
 // const Form = lazy(() => import('main/form'));
 

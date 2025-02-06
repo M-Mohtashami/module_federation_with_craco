@@ -1,12 +1,11 @@
 import React from 'react';
 import './App.css';
-import { Form, TaskList } from './components';
+import { Form, TaskList, Button } from './components';
 import { useSelector } from 'react-redux';
 import { ITasks } from './redux/types';
 import { createTheme, ThemeProvider, Divider } from '@mui/material';
 import { themeOptions } from './theme';
-import Button from './components/Button';
-import Button2 from 'tasks/Button2';
+import { Button2 } from 'tasks/components';
 
 function App() {
   const theme = createTheme(themeOptions);

@@ -1,17 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
-// import taskReducer from 'main/taskSlice'
-
-// const taskReducer = await import('main/taskSlice').then(
-//   (module) => module.default
-// );
+import counter from 'main/counter1';
+import counterReducer from './slices/counter';
 
 export const store = configureStore({
   reducer: {
     // tasks: taskReducer,
+    counter: counter,
+    counter2: counterReducer,
   },
 });
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatch = typeof store.dispatch;

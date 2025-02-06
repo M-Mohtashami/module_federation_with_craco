@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Box, ButtonBase, useTheme } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
+import { increment2 } from '../../redux/slices/counter';
 
 function Button2() {
-  const [counter, setCounter] = useState(0);
+  const { counter } = useSelector((state: RootState) => state.counter2);
+  const dispatch = useDispatch();
   const theme = useTheme();
   return (
     <Box>
       <ButtonBase
-        onClick={() => setCounter((prev) => prev + 2)}
+        onClick={() => dispatch(increment2())}
         sx={{
           padding: 4,
           borderRadius: 5,

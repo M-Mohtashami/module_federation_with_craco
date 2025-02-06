@@ -1,6 +1,8 @@
 //craco.config.js
 const { ModuleFederationPlugin } = require('webpack').container;
 
+const deps = require('./package.json').dependencies;
+
 module.exports = {
   devServer: {
     port: 3001,
@@ -20,8 +22,9 @@ module.exports = {
           name: 'main_app',
           filename: 'remoteEntry.js',
           exposes: {
-            './Button': './src/components/Button',
+            './components': './src/components',
             './themeOptions': './src/theme',
+            './counter1': './src/redux/slices/counter',
           },
           remotes: {
             tasks: 'tasks@http://localhost:3002/remoteEntry.js',
@@ -29,18 +32,23 @@ module.exports = {
           shared: {
             react: {
               singleton: true,
+              requiredVersion: deps.react,
             },
             'react-dom': {
               singleton: true,
+              requiredVersion: deps['react-dom'],
             },
             'react-redux': {
               singleton: true,
+              requiredVersion: deps['react-redux'],
             },
             '@reduxjs/toolkit': {
               singleton: true,
+              requiredVersion: deps['@reduxjs/toolkit'],
             },
             '@mui/material': {
               singleton: true,
+              requiredVersion: deps['@mui/material'],
             },
           },
         }),
