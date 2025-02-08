@@ -1,15 +1,25 @@
-import { configureStore } from '@reduxjs/toolkit';
-import taskReducer from './slices/tasks';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import counterReducer from './slices/counter';
-import counter2 from 'tasks/counter2';
+import tasksReducers from './reducers/tasks';
 
-export const store = configureStore({
-  reducer: {
-    tasks: taskReducer,
-    counter: counterReducer,
-    counter2: counter2,
-  },
-});
+export const initStore = async () => {
+  const store = configureStore({
+    reducer: combineReducers({
+      counter: counterReducer,
+      ...tasksReducers,
+    }),
+  });
+  return store;
+};
 
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof initStore> extends Promise<infer S>
+  ? S extends { getState: () => infer T }
+    ? T
+    : never
+  : never;
+
+export type AppDispatch = ReturnType<typeof initStore> extends Promise<infer S>
+  ? S extends { dispatch: infer D }
+    ? D
+    : never
+  : never;

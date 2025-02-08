@@ -3,32 +3,50 @@ import {
   Box,
   Card,
   Divider,
+  Grid2,
   IconButton,
   List,
   ListItem,
   ListItemText,
 } from '@mui/material';
-import { ITask, ITasks } from './../../redux/types';
+import { ITask } from './../../redux/types';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteTask, setSelectedTask } from '../../redux/slices/tasks';
+import { RootState } from '../../redux/store';
 
-function TaskList({ tasks }: ITasks) {
+function TaskList() {
+  const { tasks } = useSelector((state: RootState) => state.tasks);
+  const dispatch = useDispatch();
   return (
-    <Card sx={{ margin: 2, maxWidth: 500, padding: 2 }}>
+    <Card sx={{ margin: 2, maxWidth: 500, width: '100%', padding: 2 }}>
       <List
         sx={{
           padding: 2,
           width: '100%',
-          maxWidth: 360,
           bgcolor: 'background.paper',
         }}
       >
         {tasks.map((task: ITask) => (
-          <Box key={task.title}>
+          <Box key={task.id}>
             <ListItem
               secondaryAction={
-                <IconButton edge="end" aria-label="delete">
-                  {/* <DeleteIcon /> */}
-                  حذف
-                </IconButton>
+                <Grid2 container spacing={2}>
+                  <IconButton
+                    onClick={() => dispatch(setSelectedTask(task))}
+                    edge="end"
+                    aria-label="delete"
+                    color="primary"
+                  >
+                    ویرایش
+                  </IconButton>
+                  <IconButton
+                    onClick={() => dispatch(deleteTask(task.id))}
+                    edge="end"
+                    aria-label="delete"
+                  >
+                    حذف
+                  </IconButton>
+                </Grid2>
               }
             >
               <ListItemText primary={task.title} secondary={task.status} />

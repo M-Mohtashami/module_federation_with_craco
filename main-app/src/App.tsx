@@ -1,15 +1,12 @@
 import React from 'react';
 import './App.css';
-import { Form, TaskList, Button } from './components';
-import { useSelector } from 'react-redux';
-import { ITasks } from './redux/types';
+import { Button } from './components';
 import { createTheme, ThemeProvider, Divider } from '@mui/material';
 import { themeOptions } from './theme';
-import { Button2 } from 'tasks/components';
+import { Button2, Form, TaskList } from 'tasks/components';
 
 function App() {
   const theme = createTheme(themeOptions);
-  const { tasks } = useSelector((state: { tasks: ITasks }) => state.tasks);
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
@@ -18,7 +15,8 @@ function App() {
         <Button2 />
         <Divider sx={{ my: 2 }} />
         <Form />
-        <TaskList tasks={tasks} />
+        <Divider sx={{ my: 2 }} />
+        <TaskList />
       </div>
     </ThemeProvider>
   );

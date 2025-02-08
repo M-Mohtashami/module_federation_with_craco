@@ -10,25 +10,44 @@ import {
   Typography,
   Card,
 } from '@mui/material';
-import { useDispatch } from 'react-redux';
-import { addNewTask } from '../../redux/slices/tasks';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  addNewTask,
+  setSelectedTask,
+  updateTask,
+} from '../../redux/slices/tasks';
+import { RootState } from '../../redux/store';
 
 function Form() {
   const theme = useTheme();
   const dispatch = useDispatch();
   const [title, setTitle] = React.useState('');
   const [status, setStatus] = React.useState('');
+  const { selectedTask } = useSelector((state: RootState) => state.tasks);
 
   const handleReset = () => {
     setTitle('');
     setStatus('');
+    dispatch(setSelectedTask());
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addNewTask({ title, status }));
+    if (selectedTask) {
+      dispatch(updateTask({ id: selectedTask.id, title, status }));
+    } else {
+      dispatch(addNewTask({ id: crypto.randomUUID(), title, status }));
+    }
     handleReset();
   };
+
+  React.useEffect(() => {
+    if (selectedTask) {
+      setTitle(selectedTask.title);
+      setStatus(selectedTask.status);
+    }
+  }, [selectedTask]);
+
   return (
     <Card
       sx={{
@@ -76,7 +95,9 @@ function Form() {
             color: 'white',
           }}
         >
-          <Typography variant="body1">ثبت</Typography>
+          <Typography variant="body1">
+            {selectedTask ? 'ویرایش' : 'ثبت'}
+          </Typography>
         </Button>
       </form>
     </Card>

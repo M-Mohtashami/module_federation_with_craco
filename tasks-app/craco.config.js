@@ -24,6 +24,7 @@ module.exports = {
           exposes: {
             './components': './src/components',
             './counter2': './src/redux/slices/counter',
+            './tasksReducer': './src/redux/slices/tasks',
           },
           remotes: {
             main: 'main_app@http://localhost:3001/remoteEntry.js',
