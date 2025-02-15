@@ -38,4 +38,14 @@ export const themeOptions: ThemeOptions = {
     },
   },
   spacing: 8,
+  components: {
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          boxShadow: '2px 2px 19px -6px rgba(66, 68, 90, 1)',
+          borderRadius: 14,
+        },
+      },
+    },
+  },
 };

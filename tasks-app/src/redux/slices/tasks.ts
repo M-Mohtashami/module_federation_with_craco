@@ -4,6 +4,8 @@ import { ITask, ITasks } from '../types';
 
 const initialState: ITasks = {
   tasks: [{ id: '0111', title: 'test', status: 'ToDo' }],
+  selectedFilters: [],
+  filters: ['ToDo', 'Inprogress', 'Done'],
 };
 
 export const taskSlice = createSlice({
@@ -26,10 +28,26 @@ export const taskSlice = createSlice({
       const id = action.payload;
       state.tasks = state.tasks.filter((task) => task.id !== id);
     },
+    toggleFilter: (state, action: PayloadAction<string>) => {
+      const filter = action.payload;
+      const f = state.selectedFilters.includes(filter);
+      if (f) {
+        state.selectedFilters = state.selectedFilters.filter(
+          (filt) => filt !== filter
+        );
+      } else {
+        state.selectedFilters = [filter, ...state.selectedFilters];
+      }
+    },
   },
 });
 
-export const { addNewTask, updateTask, deleteTask, setSelectedTask } =
-  taskSlice.actions;
+export const {
+  addNewTask,
+  updateTask,
+  deleteTask,
+  setSelectedTask,
+  toggleFilter,
+} = taskSlice.actions;
 
 export default taskSlice.reducer;

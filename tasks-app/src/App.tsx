@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { ThemeProvider, createTheme, Box } from '@mui/material';
+import { ThemeProvider, createTheme, Grid2 } from '@mui/material';
 import { themeOptions } from './theme';
 import { themeOptions as remoteTheme } from 'main/themeOptions';
 import { Button2, Form, TaskList } from './components';
@@ -14,14 +14,15 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Box
+      <Grid2
+        container
+        size={{ xs: 12, md: 6 }}
         sx={{
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
           gap: 2,
-          margin: 16,
         }}
       >
         <Button />
@@ -32,7 +33,7 @@ function App() {
         </ThemeProvider>
         <Form />
         <TaskList />
-      </Box>
+      </Grid2>
     </ThemeProvider>
   );
 }

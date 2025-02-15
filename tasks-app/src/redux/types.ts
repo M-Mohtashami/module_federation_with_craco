@@ -6,4 +6,6 @@ export interface ITask {
 export interface ITasks {
   tasks: ITask[];
   selectedTask?: ITask;
+  selectedFilters: string[];
+  filters: ['ToDo', 'Inprogress', 'Done'];
 }
