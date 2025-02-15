@@ -30,24 +30,30 @@ module.exports = {
             tasks: 'tasks@http://localhost:3002/remoteEntry.js',
           },
           shared: {
+            ...deps,
             react: {
               singleton: true,
+              eager: false,
               requiredVersion: deps.react,
             },
             'react-dom': {
               singleton: true,
+              eager: false,
               requiredVersion: deps['react-dom'],
             },
             'react-redux': {
               singleton: true,
+              eager: false,
               requiredVersion: deps['react-redux'],
             },
             '@reduxjs/toolkit': {
               singleton: true,
+              eager: false,
               requiredVersion: deps['@reduxjs/toolkit'],
             },
             '@mui/material': {
               singleton: true,
+              eager: false,
               requiredVersion: deps['@mui/material'],
             },
           },

@@ -2,9 +2,9 @@ import React from 'react';
 import './App.css';
 import { ThemeProvider, createTheme, Grid2 } from '@mui/material';
 import { themeOptions } from './theme';
-import { themeOptions as remoteTheme } from 'main/themeOptions';
 import { Button2, Form, TaskList } from './components';
-import { Button } from 'main/components';
+const { themeOptions: remoteTheme } = await import('main/themeOptions');
+const { Button } = await import('main/components');
 
 // const Button = lazy(() => import('main/components'));
 

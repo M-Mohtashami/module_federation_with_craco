@@ -30,24 +30,30 @@ module.exports = {
             main: 'main_app@http://localhost:3001/remoteEntry.js',
           },
           shared: {
+            ...deps,
             react: {
               singleton: true,
+              eager: false,
               requiredVersion: deps.react,
             },
             'react-dom': {
               singleton: true,
+              eager: false,
               requiredVersion: deps['react-dom'],
             },
             'react-redux': {
               singleton: true,
+              eager: false,
               requiredVersion: deps['react-redux'],
             },
             '@reduxjs/toolkit': {
               singleton: true,
+              eager: false,
               requiredVersion: deps['@reduxjs/toolkit'],
             },
             '@mui/material': {
               singleton: true,
+              eager: false,
               requiredVersion: deps['@mui/material'],
             },
           },
